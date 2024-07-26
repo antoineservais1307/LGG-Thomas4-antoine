@@ -1,15 +1,15 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from calculator import calculate
+from calculate_salary import calculate_salary
 
 class User_input(BaseModel):
-    operation : str
-    x : float
-    y : float
+    salary : float
+    bonus : float
+    taxes : float
 
 app = FastAPI()
 
-@app.post("/calculate")
+@app.post("/calculate_salary")
 def operate(input:User_input):
-    result = calculate(input.operation , input.x, input.y)
+    result = calculate_salary(input.salary , input.bonus, input.taxes)
     return result
